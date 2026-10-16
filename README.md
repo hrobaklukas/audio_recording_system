@@ -1,36 +1,32 @@
-# 🎙️ Autonomous Event-Based Audio Recording System (Raspberry Pi 5 HAT)
+# Autonomous Event-Based Audio Recording System (Raspberry Pi 5 HAT)
 
-Kompletný hardvérový a softvérový návrh autonómneho, udalosťami riadeného (event-based) audiozáznamníka pre dlhodobé nasadenie v teréne. Projekt vznikol ako bakalárska práca na **FEKT VUT v Brne** (odbor *Audio inžinierstvo*).
+Bakalárska práca – FEKT VUT v Brne (Ústav telekomunikácií, odbor Audio inžinierstvo)  
+Autor: Bc. Lukáš Hrobák
 
-📄 **[Prečítať kompletný text bakalárskej práce (PDF so schémami a meraniami)](./Bakalarska_praca_Hrobak.pdf)**
+Kompletný text práce v PDF: [Bakalarska_praca_Hrobak.pdf](./Bakalarska_praca_Hrobak.pdf)
 
----
+## Popis projektu
 
-## 🛠️ Prehľad projektu (HW + SW)
+Cieľom projektu bol návrh a realizácia hardvérového rozširujúceho modulu (PCB HAT) pre platformu Raspberry Pi 5 a obslužného softvéru pre autonómny, udalosťami riadený (event-based) záznam zvuku v teréne.
 
-Cieľom projektu bolo navrhnúť, vyrobiť a oživiť rozširujúci hardvérový modul (**PCB HAT**) pre platformu **Raspberry Pi 5** spolu s obslužným softvérom, ktorý umožňuje spoľahlivý, udalosťami spúšťaný záznam zvuku v teréne bez nutnosti neustáleho dohľadu.
+Systém priebežne spracováva vstupný audio signál a ukladá záznam iba pri prekročení definovaných parametrov akustickej udalosti, čím šetrí úložisko a zefektívňuje následnú analýzu dát pri dlhodobom monitorovaní.
 
-### 1. Hardvérová časť (PCB Design: Eagle ➔ KiCad)
-* **Vlastný PCB HAT modul:** Navrhnutý priamo pre 40-pinové rozhranie Raspberry Pi 5.
-* **Iteratívny vývoj (2 revízie):** 
-  * *Revízia 1:* Prvotný prototyp navrhnutý v prostredí **Autodesk Eagle** na overenie konceptu.
-  * *Revízia 2:* Kompletný redizajn a optimalizácia layoutu v prostredí **KiCad** na základe praktických meraní a testov prvej verzie.
-* **Realizácia:** Samostatný výber súčiastok (BOM), príprava výrobných Gerber dát, osadenie a oživenie prototypu (HW bring-up).
+## Hardvérová časť (PCB HAT)
 
-### 2. Softvérová časť (Firmware / Embedded Linux)
-* **Event-Based architektúra:** Softvér neukladá prázdne ticho, ale priebežne vyhodnocuje vstupný audio signál a spúšťa záznam pri detekcii relevantnej akustickej udalosti.
-* **Autonómna prevádzka:** Automatická správa úložiska, logovanie stavov systému a odolnosť voči výpadkom pri dlhodobom nasadení v teréne.
+Vývoj hardvéru prebiehal v dvoch iteráciách:
 
----
+* **1. revízia (Autodesk Eagle – fyzický prototyp):** Prvotný návrh schémy a plošného spoja, ktorý bol vyrobený a ručne osadený. Počas oživovania (bring-up) a overovacích meraní boli identifikované chyby v návrhu, ktoré boli na fyzickej doske opravené. Na tomto plne funkčnom prototype prebiehal vývoj softvéru a reálne testovanie celého záznamníka.
+* **2. revízia (KiCad – redizajn):** Na základe poznatkov a chýb odhalených pri oživovaní prvej verzie bola schéma aj plošný spoj kompletne prepracované v programe KiCad. Táto revízia odstraňuje hardvérové nedostatky prvého prototypu (výstupom návrhu sú výrobné dáta a 3D model dosky).
 
-## 📸 Ukážka hardvéru a schémy
-*(Tip pre Lukáša: Ak do repozitára nahráš fotku dosky pod názvom `pcb_photo.jpg`, odkomentuj riadok nižšie a zobrazí sa priamo tu!)*
+## Softvérová časť
 
-<!-- ![PCB HAT pre Raspberry Pi 5](./pcb_photo.jpg) -->
+* Udalosťami riadené (event-based) spúšťanie a ukončovanie audio záznamu v prostredí Linux na Raspberry Pi 5.
+* Autonómna prevádzka pri dlhodobom nasadení v teréne a správa zaznamenaných súborov.
 
----
+## Ukážky hardvéru a návrhu
 
-## 👤 Autor
-**Bc. Lukáš Hrobák**  
-* Bakalárske štúdium: FEKT VUT v Brne – Audio inžinierstvo (2023 – 2026)
-* Magisterské štúdium: FEL ČVUT v Prahe – Komunikace a internet věcí (2026 – súčasnosť)
+### 1. Redizajn plošného spoja (2. revízia – KiCad 3D vizualizácia)
+![3D vizualizácia 2. revízie z KiCadu](./rev2_kicad_3d.png)
+
+### 2. Schéma zapojenia
+![Schéma zapojenia](./schematic.pdf)
