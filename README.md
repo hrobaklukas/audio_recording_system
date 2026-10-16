@@ -29,4 +29,4 @@ Vývoj hardvéru prebiehal v dvoch iteráciách:
 ![3D vizualizácia 2. revízie z KiCadu](./rev2_kicad_3d.png)
 
 ### 2. Schéma zapojenia
-![Schéma zapojenia](./schema.png)
+![Schéma zapojenia](./schematic.png)
